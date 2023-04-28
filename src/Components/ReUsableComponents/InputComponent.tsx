@@ -1,12 +1,12 @@
 import React from "react";
-
+import './InputComponent.scss'
 const InputComponent = (props: any) => {
   return (
     <>
-      <label className="form-label">{props.label}</label>
       <input
         type={props.type}
-        className="form-control"
+        className="form-control input-style"
+        placeholder={props.placeHolder}
         name={props.name}
         value={props.value}
         onChange={props.onChange}

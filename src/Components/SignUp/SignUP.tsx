@@ -1,14 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import InputComponent from "../ReUsableComponents/InputComponent";
 import ButtonComponent from "../ReUsableComponents/ButtonComponent";
 import "./SignUp.scss";
 
+export const passwordPattern=(inputstate: any)=> {
+  const uppercaseRegExp = /(?=.*?[A-Z])/;
+  const lowercaseRegExp = /(?=.*?[a-z])/;
+  const digitsRegExp = /(?=.*?[0-9])/;
+  const specialCharRegExp = /(?=.*?[#?!@$%^&*-])/;
+  const minLengthRegExp = /.{8,}/;
+  const passwordLength = inputstate.password.length;
+  const uppercasePassword = uppercaseRegExp.test(inputstate.password);
+  const lowercasePassword = lowercaseRegExp.test(inputstate.password);
+  const digitsPassword = digitsRegExp.test(inputstate.password);
+  const specialCharPassword = specialCharRegExp.test(inputstate.password);
+  const minLengthPassword = minLengthRegExp.test(inputstate.password);
+  return {
+    passwordLength,
+    uppercasePassword,
+    lowercasePassword,
+    digitsPassword,
+    specialCharPassword,
+    minLengthPassword,
+  };
+}
+
 const SignUP = () => {
+  
   const [inputstate, setInputState] = useState({
-    email: "",
-    userName: "",
-    password: "",
-    confirmPassword: "",
+    email: "netra@gmail.com",
+    userName: "Netra",
+    password: "1234",
+    confirmPassword: "1234",
   });
 
   const [error, setError] = useState({
@@ -28,40 +51,30 @@ const SignUP = () => {
 
   const handlePasswordError = (e: any) => {
     const { name } = e.target;
+    const patternCheck = passwordPattern(inputstate);
     if (name === "password") {
-      const uppercaseRegExp   = /(?=.*?[A-Z])/;
-      const lowercaseRegExp   = /(?=.*?[a-z])/;
-      const digitsRegExp      = /(?=.*?[0-9])/;
-      const specialCharRegExp = /(?=.*?[#?!@$%^&*-])/;
-      const minLengthRegExp   = /.{8,}/;
-      const passwordLength =      inputstate.password.length;
-      const uppercasePassword =   uppercaseRegExp.test(inputstate.password);
-      const lowercasePassword =   lowercaseRegExp.test(inputstate.password);
-      const digitsPassword =      digitsRegExp.test(inputstate.password);
-      const specialCharPassword = specialCharRegExp.test(inputstate.password);
-      const minLengthPassword =   minLengthRegExp.test(inputstate.password);
-      let errMsg ="";
-    if(passwordLength===0){
-            errMsg="Password is empty";
-    }else if(!uppercasePassword){
-            errMsg="At least one Uppercase";
-    }else if(!lowercasePassword){
-            errMsg="At least one Lowercase";
-    }else if(!digitsPassword){
-            errMsg="At least one digit";
-    }else if(!specialCharPassword){
-            errMsg="At least one Special Characters";
-    }else if(!minLengthPassword){
-            errMsg="At least minumum 8 characters";
-    }else{
-        errMsg="";
+      let errMsg = "";
+      if (patternCheck.passwordLength === 0) {
+        errMsg = "Password is empty";
+      } else if (!patternCheck.uppercasePassword) {
+        errMsg = "At least one Uppercase";
+      } else if (!patternCheck.lowercasePassword) {
+        errMsg = "At least one Lowercase";
+      } else if (!patternCheck.digitsPassword) {
+        errMsg = "At least one digit";
+      } else if (!patternCheck.specialCharPassword) {
+        errMsg = "At least one Special Characters";
+      } else if (!patternCheck.minLengthPassword) {
+        errMsg = "At least minumum 8 characters";
+      } else {
+        errMsg = "";
+      }
+      setError((prevState) => ({
+        ...prevState,
+        [name]: errMsg,
+      }));
     }
-    setError((prevState) => ({
-      ...prevState,
-      [name]: errMsg,
-    }));
-    }
-    if (name === "confirmPassword") {
+    if (name === "confirmPassword" && inputstate.confirmPassword.length!==0) {
       if (inputstate.password !== inputstate.confirmPassword) {
         setError((prevState) => ({
           ...prevState,
@@ -89,26 +102,40 @@ const SignUP = () => {
     <div style={{ color: "red" }}>{error.confirmPassword}</div>
   );
 
+  useEffect(() => {
+    localStorage.setItem("inputstate", JSON.stringify(inputstate));
+  });
+
   return (
-    <div className="main-container">
-      <form className="signupForm" onSubmit={handleOnSubmit}>
+    
+    <div className="d-flex justify-content-center signupForm">
+      <div className="image-container">
+      
+      <span className="signUpText">Hey there! Are you new user.</span>
+      <img className="signUpImage" src="https://d1vwxdpzbgdqj.cloudfront.net/assets/header/welcome_back-42b039cd2c304750320c7556aa2ad19b20fbe3dd7393799cd2d64ff297ab597b.svg"></img>
+     
+      </div>
+    
+    <div className="input-container">
+    <span className="signUpText">Sign Up</span>
+      <form className="" onSubmit={handleOnSubmit}>
         <InputComponent
           type="email"
-          label="Email Address"
+          placeHolder="Email"
           name="email"
           value={email}
           onChange={onChangeHandler}
         />
         <InputComponent
           type="text"
-          label="User Name"
+          placeHolder="User Name"
           name="userName"
           value={userName}
           onChange={onChangeHandler}
         />
         <InputComponent
           type="password"
-          label="New Password"
+          placeHolder="New Password"
           name="password"
           value={password}
           onChange={onChangeHandler}
@@ -124,7 +151,7 @@ const SignUP = () => {
 
         <InputComponent
           type="password"
-          label="Confirm Password"
+          placeHolder="Confirm Password"
           name="confirmPassword"
           value={confirmPassword}
           onChange={onChangeHandler}
@@ -137,11 +164,12 @@ const SignUP = () => {
         </div>
 
         {/* (e:any) => setInputState({...inputstate, email: e.target.value}) */}
-        <div className="buttonClass">
           <ButtonComponent className="SignUpButton" label="Sign Up" />
-        </div>
+        
       </form>
-    </div>
+      </div>
+      </div>
+     
   );
 };
 

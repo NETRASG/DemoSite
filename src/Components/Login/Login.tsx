@@ -7,24 +7,38 @@ import "./Login.scss";
 const Login = () => {
     const [inputstate, setInputState] = useState({
         email: "",
-
         password: "",
        
       });
   const { email, password } = inputstate;
 
     const onChangeHandler = (e: any) => {
+      const { name, value } = e.target;
+      setInputState((prevState)=>({
+        ...prevState,
+        [name]:value
+      }))
         
       };
-    const handleOnSubmit = (e: any) => {
-        
+    const handleOnSubmit = (e: any) => { 
+      e.preventDefault();  
+      const userData=JSON.parse(localStorage.getItem("inputstate")!)
+      console.log(userData.email);
+
+      if(userData.email===inputstate.email && userData.password===inputstate.password){
+        alert("login successfully")
+      }else{
+        alert("login failed")
+
+      }
+      
+      
        
       };
     
 
   return (
-    <div className="main-container">
-      <form className="signupForm" onSubmit={handleOnSubmit}>
+      <form className="LoginForm" onSubmit={handleOnSubmit}>
         <InputComponent
           type="email"
           label="Email Address"
@@ -42,10 +56,9 @@ const Login = () => {
         />
 
         <div className="buttonClass">
-          <ButtonComponent className="SignUpButton" label="Login" />
+          <ButtonComponent className="LoginButton" label="Login" />
         </div>
       </form>
-    </div>
   )
 }
 

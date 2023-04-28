@@ -1,14 +1,12 @@
-import React from 'react';
-import './App.scss';
-import SignUP from './Components/SignUp/SignUP';
-import Login from './Components/Login/Login';
+import React from "react";
+import "./App.scss";
+import ApplicationRouter from "./Components/RouterComponent/ApplicationRouter";
 
 function App() {
   return (
-    <div className='App-header '>
-     <Login/>
-    </div>
+    <>
+      <ApplicationRouter />
+    </>
   );
 }
-
 export default App;
