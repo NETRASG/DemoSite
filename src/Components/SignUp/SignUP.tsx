@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import InputComponent from "../ReUsableComponents/InputComponent";
 import ButtonComponent from "../ReUsableComponents/ButtonComponent";
 import "./SignUp.scss";
+import { useDispatch } from "react-redux";
 
 export const passwordPattern = (inputstate: any) => {
   const uppercaseRegExp = /(?=.*?[A-Z])/;
@@ -98,6 +99,10 @@ const SignUP = (props: any) => {
       alert("Submitted");
     }
   };
+  const dispatch=useDispatch();
+  const handleSignupClick=()=>{
+    dispatch({type:"CLICK"});
+  }
 
   const passwordMatched = (
     <div style={{ color: "green" }}>{error.confirmPassword}</div>
@@ -112,71 +117,76 @@ const SignUP = (props: any) => {
 
   return (
     <div className="main">
-    <div className={`${props.isShowSignup?"active":""} container`}>
-    <div className={"signupForm"}>
-      <div className="d-flex justify-content-center ">
-        <div className="image-container d-none d-md-inline-flex">
-          <span className="signUpText">Hey there! Are you new user.</span>
-          <img
-            className="signUpImage"
-            src="https://d1vwxdpzbgdqj.cloudfront.net/assets/header/welcome_back-42b039cd2c304750320c7556aa2ad19b20fbe3dd7393799cd2d64ff297ab597b.svg"
-          ></img>
-        </div>
-
-        <div className="input-container">
-          <span className="signUpText">Sign Up</span>
-          <form className="" onSubmit={handleOnSubmit}>
-            <InputComponent
-              type="email"
-              placeHolder="Email"
-              name="email"
-              value={email}
-              onChange={onChangeHandler}
-            />
-            <InputComponent
-              type="text"
-              placeHolder="User Name"
-              name="userName"
-              value={userName}
-              onChange={onChangeHandler}
-            />
-            <InputComponent
-              type="password"
-              placeHolder="New Password"
-              name="password"
-              value={password}
-              onChange={onChangeHandler}
-              confirmPasswordValidate={handlePasswordError}
-            />
-            <div>
-              {error.password === "Good Password" ? (
-                <div style={{ color: "green" }}>{error.password}</div>
-              ) : (
-                <div style={{ color: "red" }}>{error.password}</div>
-              )}
+      <div className={`${props.isShowSignup ? "active" : ""} container`}>
+        <div className={"signupForm"}>
+          <div className="d-flex justify-content-center ">
+            <div className="image-container d-none d-md-inline-flex">
+              <span className="signUpText">Hey there! Are you new user.</span>
+              <img
+                className="signUpImage"
+                src="https://d1vwxdpzbgdqj.cloudfront.net/assets/header/welcome_back-42b039cd2c304750320c7556aa2ad19b20fbe3dd7393799cd2d64ff297ab597b.svg"
+              ></img>
             </div>
 
-            <InputComponent
-              type="password"
-              placeHolder="Confirm Password"
-              name="confirmPassword"
-              value={confirmPassword}
-              onChange={onChangeHandler}
-              confirmPasswordValidate={handlePasswordError}
-            />
-            <div>
-              {error.confirmPassword === "password does not match"
-                ? passwordNotMatched
-                : passwordMatched}
+            <div className="input-container">
+              <div className="close">
+              <div className="closeButton" onClick={handleSignupClick} aria-label="Close">
+                <a href="#" aria-hidden="true">&times;</a>
+              </div>
+              </div>
+              <span className="signUpText">Sign Up</span>
+              <form className="" onSubmit={handleOnSubmit}>
+                <InputComponent
+                  type="email"
+                  placeHolder="Email"
+                  name="email"
+                  value={email}
+                  onChange={onChangeHandler}
+                />
+                <InputComponent
+                  type="text"
+                  placeHolder="User Name"
+                  name="userName"
+                  value={userName}
+                  onChange={onChangeHandler}
+                />
+                <InputComponent
+                  type="password"
+                  placeHolder="New Password"
+                  name="password"
+                  value={password}
+                  onChange={onChangeHandler}
+                  confirmPasswordValidate={handlePasswordError}
+                />
+                <div>
+                  {error.password === "Good Password" ? (
+                    <div style={{ color: "green" }}>{error.password}</div>
+                  ) : (
+                    <div style={{ color: "red" }}>{error.password}</div>
+                  )}
+                </div>
+
+                <InputComponent
+                  type="password"
+                  placeHolder="Confirm Password"
+                  name="confirmPassword"
+                  value={confirmPassword}
+                  onChange={onChangeHandler}
+                  confirmPasswordValidate={handlePasswordError}
+                />
+                <div>
+                  {error.confirmPassword === "password does not match"
+                    ? passwordNotMatched
+                    : passwordMatched}
+                </div>
+                <div className="buttonClass">
+                  <ButtonComponent className="SignUpButton" label="Sign Up" />
+                </div>
+              </form>
             </div>
-            <div className="buttonClass"> 
-            <ButtonComponent className="SignUpButton" label="Sign Up" />
-            </div>
-          </form>
+          </div>
         </div>
       </div>
-    </div>
-    </div>
     </div>
   );
 };

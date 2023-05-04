@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from 'react-redux'
 const ApplicationRouter = () => {
   const dispatch=useDispatch();
 
+  const isSignUpShow= useSelector((state:any) => state.isSignUpShow);
 
   const handleSignupClick=()=>{
     dispatch({type:"CLICK"});
@@ -17,8 +18,9 @@ const ApplicationRouter = () => {
   return (
    <BrowserRouter>
     <Header handleOnClick={handleSignupClick}/>
+    <SignUP isShowSignup={isSignUpShow} />
    <Routes>
-    <Route path='/' element={<Home/>}></Route>
+    <Route  path='/' element={<Home/>}></Route>
     {/* <Route  path='/signup' element={<SignUP/>}></Route> */}
     <Route path='/login' element={<Login/>}></Route>
    </Routes>

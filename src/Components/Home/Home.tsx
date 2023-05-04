@@ -5,11 +5,11 @@ import { useSelector } from "react-redux";
 import './Home.scss'
 
 const Home = () => {
-  const isSignUpShow= useSelector((state:any) => state.isSignUpShow);
+  // const isSignUpShow= useSelector((state:any) => state.isSignUpShow);
 
   return (
     <div >
-      <SignUP isShowSignup={isSignUpShow} />
+      {/* <SignUP isShowSignup={isSignUpShow} /> */}
       <div className="home-container">
         home
       </div>

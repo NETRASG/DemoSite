@@ -38,6 +38,28 @@
     border: none;
 
 }
+
+.close {
+  display: flex;
+  flex-direction: column;
+  align-items: end; 
+  
+  a {
+    font-size: 32px;
+    text-decoration: none;
+    color: rgb(206, 204, 204);
+    font-weight: 900;
+    // font-stretch: expanded;
+    
+  }
+
+  a:hover {
+    color: gray;
+  }
+}
+
+
+
 .buttonClass{
     display: flex;
     flex-direction: column;
