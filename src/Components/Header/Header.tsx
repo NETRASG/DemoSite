@@ -3,7 +3,7 @@ import "./Header.scss";
 import { Link } from "react-router-dom";
 
 
-const Header = () => {
+const Header = (props:any) => {
   return (
     <nav className="navbar navbar-expand-md navbar-light bg-light">
   <div className=" container-fluid">
@@ -21,9 +21,9 @@ const Header = () => {
         </li>
       </ul>
       <ul className="navbar-nav ml-auto mb-2 mb-lg-0 ">
-        <Link to='/signup' className="nav-item">
-          <a className="nav-link active" aria-current="page" href="#">Sign Up</a>
-        </Link>
+        {/* <Link to='/' className="nav-item"> */}
+          <a className="nav-link active" onClick={props.handleOnClick} aria-current="page" href="#">Sign Up</a>
+        {/* </Link> */}
         <Link to='/login' className="nav-item">
           <a className="nav-link" href="#">Login</a>
         </Link>
