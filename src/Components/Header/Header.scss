@@ -1,23 +1,47 @@
-.header{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.main-header {
+box-shadow: 2px 2px 3px #3333334f
+// border: 1px solid black;
+}
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.leftHeader{
-background-color: aqua;
-display: flex;
-flex-direction: row;
-
+.leftHeader {
+  display: flex;
+  flex-direction: row;
 }
 
-.rightHeader{
-background-color: yellow;
-display: flex;
-flex-direction: row;
-
+.rightHeader {
+  display: flex;
+  flex-direction: row;
 }
 
-li {
+.explore-button {
+  background-color: #196ae5;
+  border-radius: 3px;
+  padding: 8px;
+
+  span {
+    color: white;
+    font-weight: 700;
     
+  }
+}
+
+a{
+  text-decoration: none;
+  margin: 10px;
+}
+
+a div{
+ 
+  font-weight: 500;
+  padding: 10px;
+  color: rgb(47, 47, 47)  
+}
+
+a div:hover {
+  color: #196ae5;
 }
