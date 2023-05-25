@@ -1,0 +1,13 @@
+.main{
+    display: block;
+    background-color: #f8f8f8  ;
+    width: 100%;
+    
+    position: absolute;
+    z-index: 1;
+    
+}
+
+.active.main {
+    display: none;
+}

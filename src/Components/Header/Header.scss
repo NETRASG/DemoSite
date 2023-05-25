@@ -1,6 +1,6 @@
 .main-header {
-box-shadow: 2px 2px 3px #3333334f
-// border: 1px solid black;
+box-shadow: 2px 2px 3px #3333334f;
+height: 100%;
 }
 .header {
   display: flex;
@@ -18,15 +18,48 @@ box-shadow: 2px 2px 3px #3333334f
   flex-direction: row;
 }
 
+
+
 .explore-button {
   background-color: #196ae5;
   border-radius: 3px;
-  padding: 8px;
-
-  span {
+  display: flex;
+  justify-content: center;
+  div {
     color: white;
-    font-weight: 700;
-    
+    font-weight: 600;
+    padding: 0;
+  }
+  .downArrowHead-div{
+    transition: 0.3s;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+
+    .down-arrow-head{
+      stroke: white;
+       stroke-width:20px;
+    }
+  }
+}
+
+.down-arrow-head:hover {
+  stroke:#196ae5;
+}
+
+.explore-button:hover {
+  background-color: white;
+  border: 1px solid #196ae5;
+  
+  div {
+    color: #196ae5;
+  }
+   .down-arrow-head {
+    stroke:#196ae5;
+    }
+  .downArrowHead-div{
+    transform: rotate(-180deg);
   }
 }
 
@@ -36,12 +69,94 @@ a{
 }
 
 a div{
- 
   font-weight: 500;
-  padding: 10px;
-  color: rgb(47, 47, 47)  
+  // padding: 10px;
+  color: rgb(47, 47, 47);
+  font-size: 1rem;
+  white-space: nowrap;
+
+}
+
+.Login-button {
+  background-color: rgb(241, 244, 244);
+  padding: 8px 20px ;
+  border-radius: 3px;
+  color: #196ae5;
+  font-weight: 700;
+}
+
+.Login-button:hover {
+  box-shadow: 0 0 5px #c7c5c5;
+}
+
+.more{
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  .downArrowHead-div{
+   padding-left: 0;
+   padding-right: 0;
+    .down-arrow-head{
+      stroke:black;
+    }
+  }
+
 }
 
 a div:hover {
   color: #196ae5;
+  .downArrowHead-div{
+    transform: rotate(-180deg);
+  .down-arrow-head{
+    stroke:#196ae5;
+  }
 }
+}
+
+@media (max-width: 576px) {
+  a div {
+    font-size: 13px;
+  }
+}
+@media (min-width: 576px ) and (max-width: 768px ) {
+  a div {
+    font-size: 13px;
+  }
+ 
+}
+
+@media (min-width: 768px ) and (max-width: 992px ) {
+  a div {
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 992px ) and (max-width:1028px) {
+  a div {
+     font-size: .8rem;
+     white-space: nowrap;
+     padding: 4px;
+
+  }
+ 
+}
+@media (min-width: 1028px ) and (max-width:1200px) {
+  a div {
+     font-size: .8rem;
+     white-space: nowrap;
+     padding: 5px;
+  }
+}
+@media (min-width: 1200px ) {
+  a div {
+     font-size: 1rem;
+     white-space: nowrap;
+     padding: 8px;
+  }
+  
+  .image {
+    height: 35px;
+  }
+}
+
+

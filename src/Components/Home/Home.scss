@@ -1,4 +1,43 @@
-.home-container{
-   // background-color: aqua; 
+.home-container {
 
+}
+
+.left-container {
+  width: 45%;
+  padding: 20px;
+ 
+}
+
+.right-container {
+  width: 45%;
+  padding: 20px;
+  
+}
+
+.down-arrow-head{
+   stroke: rgb(84, 84, 84);
+   width: 100%;
+}
+
+
+.dropdown {
+  border: 1px solid blue;
+  border-radius: 50px;
+  width:50%;
+   .profile{
+   padding: 7px;
+  }
+  .down-arrow {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   padding-left: 10px;
+  }
+  .small-text{
+   color: gray;
+   font-size: 15px;
+  }
+  .big-text{
+   font-weight: 500;
+  }
 }
